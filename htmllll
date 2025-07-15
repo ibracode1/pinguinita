@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Para mi pingüinita 💜</title>
+  <style>
+    /* Reset y base */
+    *, *::before, *::after {
+      margin: 0; padding: 0; box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: radial-gradient(circle at top, #0d001a, #000);
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow-x: hidden;
+      position: relative;
+      padding: 1rem;
+    }
+
+    /* Estrellas animadas */
+    .star {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: #fff;
+      border-radius: 50%;
+      animation: twinkle 2.5s infinite ease-in-out;
+      will-change: opacity, transform;
+      filter: drop-shadow(0 0 2px white);
+    }
+    @keyframes twinkle {
+      0%, 100% {opacity: 0.2; transform: scale(1);}
+      50% {opacity: 1; transform: scale(1.3);}
+    }
+
+    /* Luna */
+    .luna {
+      position: fixed;
+      top: 5vh;
+      right: 5vw;
+      width: 90px;
+      height: 90px;
+      background: #fff;
+      border-radius: 50%;
+      box-shadow: 0 0 20px rgba(255,255,255,0.7);
+      animation: luna-move 12s ease-in-out infinite;
+      z-index: 0;
+      filter: drop-shadow(0 0 4px #fff);
+    }
+    @keyframes luna-move {
+      0%, 100% {transform: translateX(0);}
+      50% {transform: translateX(-40px);}
+    }
+
+    /* Contenedor principal */
+    main {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      max-width: 480px;
+      width: 100%;
+      padding: 2rem 1rem;
+      background: rgba(29, 14, 63, 0.7);
+      border-radius: 20px;
+      box-shadow: 0 0 30px #a555ee;
+      backdrop-filter: blur(8px);
+      user-select: none;
+    }
+
+    h1 {
+      font-size: 3rem;
+      color: #d6b3ff;
+      text-shadow: 0 0 8px #a555ee;
+      margin-bottom: 0.5rem;
+      letter-spacing: 0.06em;
+    }
+    p {
+      font-size: 1.25rem;
+      margin-bottom: 1rem;
+      font-weight: 600;
+      color: #f0d8ff;
+      text-shadow: 0 0 5px #7a42ffaa;
+    }
+    #counter {
+      font-size: 1.3rem;
+      color: #f3e5ff;
+      margin-bottom: 1.2rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      text-shadow: 0 0 8px #aa55ee;
+      user-select: text;
+    }
+
+    /* Botones con estilo moderno */
+    .cute-button {
+      background: linear-gradient(135deg, #cc88ff, #a555ee);
+      border: none;
+      border-radius: 50px;
+      padding: 15px 35px;
+      font-size: 1.25rem;
+      color: #fff;
+      cursor: pointer;
+      box-shadow: 0 6px 30px rgba(170, 85, 238, 0.7);
+      transition: transform 0.35s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.35s;
+      margin: 0.3rem 0.7rem;
+      user-select: none;
+      font-weight: 600;
+      text-shadow: 0 0 4px #8a2be2;
+    }
+    .cute-button:hover, .cute-button:focus {
+      transform: scale(1.12) rotate(-1deg);
+      box-shadow: 0 12px 45px rgba(170, 85, 238, 0.9);
+      outline: none;
+    }
+    .cute-button:active {
+      transform: scale(1) rotate(0deg);
+      box-shadow: 0 5px 20px rgba(170, 85, 238, 0.7);
+    }
+
+    /* Animaciones para corazones, globos y tulipanes */
+    .heart, .balloon, .tulip {
+      position: absolute;
+      z-index: 1;
+      will-change: transform, opacity;
+      pointer-events: none;
+    }
+
+    /* Corazón */
+    .heart {
+      width: 30px;
+      height: 30px;
+      background: #e74c3c;
+      transform: rotate(45deg);
+      animation: float 8s linear infinite;
+      filter: drop-shadow(0 0 5px #e74c3c);
+    }
+    .heart::before, .heart::after {
+      content: '';
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      background: #e74c3c;
+      border-radius: 50%;
+    }
+    .heart::before {
+      top: -15px;
+      left: 0;
+    }
+    .heart::after {
+      left: -15px;
+      top: 0;
+    }
+    @keyframes float {
+      0% {
+        transform: translateY(100vh) rotate(45deg);
+        opacity: 0;
+      }
+      50% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-10vh) rotate(45deg);
+        opacity: 0;
+      }
+    }
+
+    /* Globo */
+    .balloon {
+      width: 35px;
+      height: 50px;
+      background: radial-gradient(circle at 30% 30%, #ff9999, #cc0000);
+      border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+      animation: rise 6s ease-in infinite;
+      filter: drop-shadow(0 0 5px #cc0000);
+    }
+    @keyframes rise {
+      0% {
+        transform: translateY(100vh) scale(0.6);
+        opacity: 0;
+      }
+      30% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-20vh) scale(1);
+        opacity: 0;
+      }
+    }
+
+    /* Tulipán */
+    .tulip {
+      width: 20px;
+      height: 30px;
+      clip-path: polygon(50% 0%, 100% 40%, 80% 100%, 20% 100%, 0% 40%);
+      animation: petal 7s linear infinite;
+      filter: drop-shadow(0 0 6px #f48fb1);
+    }
+    @keyframes petal {
+      0% {
+        transform: translateY(-20vh) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    /* Frases que caen */
+    .phrase {
+      position: absolute;
+      font-size: 1.1rem;
+      color: #ffe6ff;
+      animation: fall 6s linear forwards;
+      white-space: nowrap;
+      z-index: 1;
+      text-shadow: 0 0 6px #ff88ee;
+      user-select: none;
+      pointer-events: none;
+      filter: drop-shadow(0 0 5px #ff88ee);
+    }
+    @keyframes fall {
+      to {
+        transform: translateY(100vh);
+        opacity: 0;
+      }
+    }
+
+    /* Spotify Player personalizado */
+    #spotify-player {
+      border-radius: 15px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.6);
+      width: 100%;
+      max-width: 360px;
+      height: 80px;
+      margin: 1.5rem auto 1rem auto;
+      filter: drop-shadow(0 0 8px #a555ee);
+      border: none;
+      user-select: none;
+    }
+
+    /* Footer */
+    footer {
+      font-size: 1rem;
+      color: #e0c0ff;
+      text-align: center;
+      padding: 1rem 0;
+      z-index: 1;
+      user-select: none;
+      text-shadow: 0 0 4px #9a70ff;
+      font-weight: 600;
+    }
+
+    /* Carta sorpresa */
+    #carta {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      width: 80%;
+      max-width: 320px;
+      background: #fff;
+      color: #333;
+      padding: 25px 30px;
+      border-radius: 20px;
+      box-shadow: 0 12px 35px rgba(0,0,0,0.6);
+      text-align: center;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+      z-index: 10;
+      user-select: text;
+    }
+    #carta.visible {
+      transform: translate(-50%, -50%) scale(1);
+    }
+    #carta h2 {
+      margin-bottom: 15px;
+      color: #a555ee;
+      font-weight: 700;
+      text-shadow: 0 0 6px #a555ee;
+    }
+    #carta p {
+      font-size: 1.1rem;
+      line-height: 1.5;
+      color: #555;
+    }
+    #closeCarta {
+      margin-top: 20px;
+      background: #a555ee;
+      color: #fff;
+      border: none;
+      padding: 10px 22px;
+      border-radius: 30px;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 1rem;
+      transition: background-color 0.3s ease;
+      user-select: none;
+      box-shadow: 0 5px 15px rgba(170, 85, 238, 0.8);
+    }
+    #closeCarta:hover, #closeCarta:focus {
+      background: #8a3bcc;
+      outline: none;
+    }
+
+    /* Responsividad */
+    @media (max-width: 400px) {
+      main {
+        padding: 1.5rem 1rem;
+      }
+      h1 {
+        font-size: 2rem;
+      }
+      .cute-button {
+        padding: 12px 24px;
+        font-size: 1rem;
+      }
+      #carta {
+        max-width: 90%;
+        padding: 20px 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <audio id="backgroundMusic" src="https://www.bensound.com/bensound-music/bensound-romantic.mp3" loop></audio>
+  <div class="luna" aria-hidden="true"></div>
+
+  <main role="main" aria-label="Mensaje romántico para mi pingüinita">
+    <h1>💜 TE AMO PINGÜINITA 💜</h1>
+    <p>Este espacio es para ti, mi amor.</p>
+    <div id="counter" aria-live="polite" aria-atomic="true"></div>
+
+    <button class="cute-button" onclick="dropPhrase()" aria-label="Mostrar frase romántica">Frase romántica 💖</button>
+    <button class="cute-button" onclick="showCarta()" aria-haspopup="dialog" aria-controls="carta" aria-expanded="false">Carta sorpresa 💌</button>
+
+    <iframe
+      id="spotify-player"
+      src="https://open.spotify.com/embed/track/1KrhFTmjys1o7PJP7xbbuz"
+      allow="autoplay; clipboard-write; encrypted-media"
+      loading="lazy"
+      title="Spotify Player: Canción romántica"
+      aria-label="Reproductor de música Spotify"
+    ></iframe>
+  </main>
+
+  <aside
+    id="carta"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="carta-titulo"
+    aria-describedby="carta-texto"
+    tabindex="-1"
+  >
+    <h2 id="carta-titulo">Mi amor... 💜</h2>
+    <p id="carta-texto">Cada día contigo es un sueño que no quiero despertar. Gracias por ser mi inspiración.</p>
+    <button id="closeCarta" onclick="hideCarta()" aria-label="Cerrar carta sorpresa">Cerrar</button>
+  </aside>
+
+  <footer>Andrea e Ibrahim 💜</footer>
+
+  <script>
+    // Reproducir música al cargar la página (manejo del error si el navegador bloquea autoplay)
+    window.onload = () => {
+      const music = document.getElementById('backgroundMusic');
+      music.play().catch(() => {
+        // No hace nada, el usuario tendrá que dar play manualmente
+      });
+    };
+
+    // Contador de tiempo juntos actualizado cada segundo
+    const startDate = new Date('2025-04-02T00:00:00');
+    const counter = document.getElementById('counter');
+
+    function updateCounter() {
+      const now = Date.now();
+      const diff = now - startDate.getTime();
+
+      const days = Math.floor(diff / 86400000);
+      const hours = Math.floor((diff % 86400000) / 3600000);
+      const minutes = Math.floor((diff % 3600000) / 60000);
+      const seconds = Math.floor((diff % 60000) / 1000);
+
+      counter.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s juntos`;
+    }
+    setInterval(updateCounter, 1000);
+    updateCounter();
+
+    // Crear estrellas de fondo con animación
+    for (let i = 0; i < 80; i++) {
+      const star = document.createElement('div');
+      star.className = 'star';
+      star.style.top = `${Math.random() * 100}vh`;
+      star.style.left = `${Math.random() * 100}vw`;
+      star.style.animationDuration = `${Math.random() * 2 + 1.5}s`;
+      star.style.animationDelay = `${Math.random() * 2}s`;
+      document.body.appendChild(star);
+    }
+
+    // Animación de corazones, globos y tulipanes
+    function spawn(elementClass) {
+      const elem = document.createElement('div');
+      elem.className = elementClass;
+
+      // Posición horizontal aleatoria dentro del viewport
+      elem.style.left = `${Math.random() * 90}vw`;
+
+      // Color aleatorio para globos y tulipanes
+      if (elementClass === 'balloon') {
+        const hue = Math.floor(Math.random() * 360);
+        elem.style.background = `radial-gradient(circle at 30% 30%, hsl(${hue}, 70%, 80%), hsl(${hue}, 80%, 40%))`;
+        elem.style.filter = `drop-shadow(0 0 5px hsl(${hue}, 80%, 50%))`;
+      }
+      if (elementClass === 'tulip') {
+        const colors = ['#e53935', '#f48fb1', '#ffca28', '#ff7043'];
+        elem.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+        elem.style.filter = 'drop-shadow(0 0 6px rgba(0,0,0,0.3))';
+      }
+
+      document.body.appendChild(elem);
+
+      setTimeout(() => elem.remove(), 10000);
+    }
+    setInterval(() => spawn('heart'), 400);
+    setInterval(() => spawn('balloon'), 900);
+    setInterval(() => spawn('tulip'), 1200);
+
+    // Frases románticas que caen suavemente
+    const phrases = [
+      "Eres mi lugar favorito",
+      "Tu sonrisa ilumina mis días",
+      "Contigo todo es mejor",
+      "Te amo más de lo que las palabras pueden decir",
+      "Cada segundo contigo es un regalo",
+      "Quiero hacer contigo lo que la primavera hace con los cerezos.",
+      "Te amo",
+      "Si te quiero es porque eres mi amor, mi cómplice y todo…",
+      "El sol, la luna, las estrellas… Todo pierde sentido ante el cielo de tus ojos.",
+      "El amor es eterno.",
+      "Tus labios eran una caricia necesaria, ¿cómo podía haber vivido sin ellos?",
+      "Jamás en mí podrá apagarse la llama de tu amor.",
+      "Eres mi hoy y todos mis mañanas.",
+      "El amor no se mira, se siente…",
+      "Te amo más que a mi propia piel.",
+      "Tardé una hora en conocerte y un día en enamorarme…",
+      "Eres la razón por la que sonrío cada día.",
+      "El amor sana todas las heridas del alma.",
+      "En cada suspiro, se escucha tu nombre.",
+      "Sus labios me hacen sentir más cosas de las que jamás podré expresar.",
+      "Me desearon lo mejor, y llegaste.",
+      "Pienso en ti, cada momento, cada día.",
+      "Eres mi todo, mi existir, mi sol, mi luna, mi maravilla.",
+      "Cuando cierro los ojos, siempre te veo.",
+      "En cada latido, susurro tu nombre.",
+      "Eres mi sol, mi luna y todas mis estrellas.",
+      "I love you to the moon and back.",
+      "You are my heart, my life…",
+      "In all the world, there is no heart for me like yours.",
+      "El amor es un arte que nunca se doma, pero siempre se celebra.",
+      "Eres la estrella que ilumina mi universo.",
+      "Contigo, cada historia es la mejor historia de amor.",
+      "Amarte es ese crimen que jamás quiero dejar de cometer.",
+      "Eres el susurro de mis sueños eternos.",
+      "Un pequeño gesto puede encender un fuego eterno.",
+      "Cada beso es un capítulo de nuestra historia.",
+      "Las flores marchitan, pero tu amor siempre florece.",
+      "Un roce de tus manos es el mejor regalo.",
+      "Las cartas de amor son las páginas de nuestro corazón.",
+      "El verdadero amor supera toda dificultad.",
+      "En las tormentas, nuestro amor es el faro.",
+      "El amor ve la belleza más allá de las imperfecciones.",
+      "Nuestro amor es un susurro en el viento.",
+      "Tus abrazos son mi medicina infalible.",
+      "Tu amor pinta mis cicatrices con esperanza.",
+      "Amor es mirarte a los ojos… Con cada suspiro, mi alma grita en secreto.",
+      "Eres mi sol en días nublados y mi refugio en noches frías.",
+      "Tu sonrisa es el mejor regalo que puedo recibir cada día.",
+      "En tus brazos encuentro mi paz y mi hogar.",
+      "El amor no se trata de contar los días, sino de hacer que cada día cuente.",
+      "Tú y yo, una historia de amor escrita en las estrellas.",
+      "Tu amor es mi refugio en medio de la tormenta.",
+      "Eres mi inspiración, mi razón para seguir adelante.",
+      "No importa la distancia, siempre estaremos unidos por el amor.",
+      "Tú me completas de una forma única, eres mi otra mitad.",
+      "Mi corazón late más fuerte cada vez que te veo.",
+      "Eres el sueño que nunca quiero despertar.",
+      "Amarte es como respirar, simplemente no puedo dejar de hacerlo.",
+      "No sé cuánto más te vaya a quererte… tú sabes que contigo voy a muerte.",
+      "Eres la casualidad más bonita que llegó a mi vida",
+      "Te elijo a ti, hoy y siempre.",
+      "Eres mi hogar, mi paz, mi todo.",
+      "Tus besos son mi droga favorita.",
+      "Eres mi mejor aventura, mi más dulce locura.",
+      "Contigo, cada día es San Valentín.",
+      "En un mundo de caos, tú eres mi paz.",
+      "Eres mi mejor historia de amor y quiero que dure para siempre.",
+      "Ardemos cada uno en la boca del otro.",
+      "Eres todo lo bonito que quiero tener en la vida.",
+      "Tus ojos son el laberinto de mi alma.",
+      "Si tiene que suceder, que sea a tu lado.",
+      "No puedes imaginarte cuánto te amo. Simplemente no puedes.",
+      "Es pensar en ti, y tener ganas de sonreír.",
+      "Mi amor por ti está muy por encima de mis palabras…",
+      "Contigo descubrí que el amor no se busca, se encuentra.",
+      "De lo que estén hechas las almas, la tuya y la mía son exactamente lo mismo.",
+      "Todo lo que eres es todo lo que necesitaré.",
+      "El amor es esa condición en la cual la felicidad de la otra persona es esencial para la tuya.",
+      "La amo y ese es el principio y final de todo.",
+      "El amor se compone de una sola alma que habita dos cuerpos.",
+      "Tú y yo somos el perfecto equilibrio del amor.",
+      "Eres mi refugio en este mundo caótico.",
+      "Tus besos en cáncer de mi alma…",
+      "Amor es mirarte a los ojos… y declararle la guerra a mi egoísmo…",
+      "Te vi llegar y mi vida se iluminó… viniste a calentar en eterno frío…",
+      "Eres como un atardecer, te quiero pero no te puedo tener…",
+      "Fuiste la forma más triste y bonita que tuvo la vida para decirme que no se puede tenerlo todo.",
+      "Del cielo cayó un ángel, para pintar tu figura…",
+      "Tus ojos son como el universo, porque en ellos estoy inmerso.",
+      "Si el significado de la vida es el amor, ahora sé que mi vida significas tú.",
+      "El amor es un misterio. Todo en él es ilógico, todo en él es vaguedad y absurdo.",
+      "Tan imposible es avivar la lumbre con nieve, como apagar el fuego del amor con palabras.",
+      "El verdadero paraíso no está en el cielo, sino en la boca de la mujer amada.",
+      "Cuando se es amado, no se duda de nada. Cuando se ama, se duda de todo."
+    ];
+    let phraseIndex = 0;
+
+    function dropPhrase() {
+      const phraseDiv = document.createElement('div');
+      phraseDiv.className = 'phrase';
+      phraseDiv.textContent = phrases[phraseIndex];
+      phraseDiv.style.left = `${Math.random() * 80}vw`;
+      document.body.appendChild(phraseDiv);
+
+      // Animación y eliminación
+      setTimeout(() => {
+        phraseDiv.remove();
+      }, 6000);
+
+      phraseIndex = (phraseIndex + 1) % phrases.length;
+    }
+
+    // Mostrar y ocultar carta sorpresa
+    const carta = document.getElementById('carta');
+    const cartaBtn = document.querySelector('button[aria-controls="carta"]');
+
+    function showCarta() {
+      carta.classList.add('visible');
+      cartaBtn.setAttribute('aria-expanded', 'true');
+      carta.focus();
+    }
+
+    function hideCarta() {
+      carta.classList.remove('visible');
+      cartaBtn.setAttribute('aria-expanded', 'false');
+      cartaBtn.focus();
+    }
+
+    // Cerrar carta con Escape
+    document.addEventListener('keydown', (e) => {
+      if (e.key === "Escape" && carta.classList.contains('visible')) {
+        hideCarta();
+      }
+    });
+  </script>
+</body>
+</html>
