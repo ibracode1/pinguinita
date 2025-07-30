@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Para mi pingüinita 💜</title>
   <style>
-    /* Reset y base */
     *, *::before, *::after {
       margin: 0; padding: 0; box-sizing: border-box;
     }
@@ -23,7 +22,6 @@
       padding: 1rem;
     }
 
-    /* Estrellas animadas */
     .star {
       position: absolute;
       width: 2px;
@@ -39,7 +37,6 @@
       50% {opacity: 1; transform: scale(1.3);}
     }
 
-    /* Luna */
     .luna {
       position: fixed;
       top: 5vh;
@@ -58,7 +55,6 @@
       50% {transform: translateX(-40px);}
     }
 
-    /* Contenedor principal */
     main {
       position: relative;
       z-index: 1;
@@ -97,7 +93,6 @@
       user-select: text;
     }
 
-    /* Botones con estilo moderno */
     .cute-button {
       background: linear-gradient(135deg, #cc88ff, #a555ee);
       border: none;
@@ -123,7 +118,6 @@
       box-shadow: 0 5px 20px rgba(170, 85, 238, 0.7);
     }
 
-    /* Animaciones para corazones, globos y tulipanes */
     .heart, .balloon, .tulip {
       position: absolute;
       z-index: 1;
@@ -131,7 +125,6 @@
       pointer-events: none;
     }
 
-    /* Corazón */
     .heart {
       width: 30px;
       height: 30px;
@@ -170,49 +163,6 @@
       }
     }
 
-    /* Globo */
-    .balloon {
-      width: 35px;
-      height: 50px;
-      background: radial-gradient(circle at 30% 30%, #ff9999, #cc0000);
-      border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
-      animation: rise 6s ease-in infinite;
-      filter: drop-shadow(0 0 5px #cc0000);
-    }
-    @keyframes rise {
-      0% {
-        transform: translateY(100vh) scale(0.6);
-        opacity: 0;
-      }
-      30% {
-        opacity: 1;
-      }
-      100% {
-        transform: translateY(-20vh) scale(1);
-        opacity: 0;
-      }
-    }
-
-    /* Tulipán */
-    .tulip {
-      width: 20px;
-      height: 30px;
-      clip-path: polygon(50% 0%, 100% 40%, 80% 100%, 20% 100%, 0% 40%);
-      animation: petal 7s linear infinite;
-      filter: drop-shadow(0 0 6px #f48fb1);
-    }
-    @keyframes petal {
-      0% {
-        transform: translateY(-20vh) rotate(0deg);
-        opacity: 1;
-      }
-      100% {
-        transform: translateY(100vh) rotate(360deg);
-        opacity: 0;
-      }
-    }
-
-    /* Frases que caen */
     .phrase {
       position: absolute;
       font-size: 1.1rem;
@@ -232,7 +182,6 @@
       }
     }
 
-    /* Spotify Player personalizado */
     #spotify-player {
       border-radius: 15px;
       box-shadow: 0 6px 20px rgba(0,0,0,0.6);
@@ -245,7 +194,6 @@
       user-select: none;
     }
 
-    /* Footer */
     footer {
       font-size: 1rem;
       color: #e0c0ff;
@@ -256,8 +204,6 @@
       text-shadow: 0 0 4px #9a70ff;
       font-weight: 600;
     }
-
-    /* Carta sorpresa */
     #carta {
       position: fixed;
       top: 50%;
@@ -309,7 +255,6 @@
       outline: none;
     }
 
-    /* Responsividad */
     @media (max-width: 400px) {
       main {
         padding: 1.5rem 1rem;
@@ -337,15 +282,15 @@
     <p>Este espacio es para ti, mi amor.</p>
     <div id="counter" aria-live="polite" aria-atomic="true"></div>
 
-    <button class="cute-button" onclick="dropPhrase()" aria-label="Mostrar frase romántica">Frase romántica 💖</button>
-    <button class="cute-button" onclick="showCarta()" aria-haspopup="dialog" aria-controls="carta" aria-expanded="false">Carta sorpresa 💌</button>
+    <button class="cute-button" onclick="dropPhrase()" aria-label="Mostrar frase romántica"> 💖</button>
+    <button class="cute-button" onclick="showCarta()" aria-haspopup="dialog" aria-controls="carta" aria-expanded="false">💌</button>
 
     <iframe
       id="spotify-player"
       src="https://open.spotify.com/embed/track/1KrhFTmjys1o7PJP7xbbuz"
       allow="autoplay; clipboard-write; encrypted-media"
       loading="lazy"
-      title="Spotify Player: Canción romántica"
+      title="Spotify Player"
       aria-label="Reproductor de música Spotify"
     ></iframe>
   </main>
@@ -359,18 +304,16 @@
     tabindex="-1"
   >
     <h2 id="carta-titulo">Mi amor... 💜</h2>
-    <p id="carta-texto">Cada día contigo es un sueño que no quiero despertar. Gracias por ser mi inspiración.</p>
+    <p id="carta-texto">Te amo cada segundo que paso a tu lado, eres mi mas grande inspiracion</p>
     <button id="closeCarta" onclick="hideCarta()" aria-label="Cerrar carta sorpresa">Cerrar</button>
   </aside>
 
   <footer>Andrea e Ibrahim 💜</footer>
 
   <script>
-    // Reproducir música al cargar la página (manejo del error si el navegador bloquea autoplay)
     window.onload = () => {
       const music = document.getElementById('backgroundMusic');
       music.play().catch(() => {
-        // No hace nada, el usuario tendrá que dar play manualmente
       });
     };
 
@@ -392,7 +335,6 @@
     setInterval(updateCounter, 1000);
     updateCounter();
 
-    // Crear estrellas de fondo con animación
     for (let i = 0; i < 80; i++) {
       const star = document.createElement('div');
       star.className = 'star';
@@ -403,25 +345,12 @@
       document.body.appendChild(star);
     }
 
-    // Animación de corazones, globos y tulipanes
     function spawn(elementClass) {
       const elem = document.createElement('div');
       elem.className = elementClass;
 
-      // Posición horizontal aleatoria dentro del viewport
       elem.style.left = `${Math.random() * 90}vw`;
 
-      // Color aleatorio para globos y tulipanes
-      if (elementClass === 'balloon') {
-        const hue = Math.floor(Math.random() * 360);
-        elem.style.background = `radial-gradient(circle at 30% 30%, hsl(${hue}, 70%, 80%), hsl(${hue}, 80%, 40%))`;
-        elem.style.filter = `drop-shadow(0 0 5px hsl(${hue}, 80%, 50%))`;
-      }
-      if (elementClass === 'tulip') {
-        const colors = ['#e53935', '#f48fb1', '#ffca28', '#ff7043'];
-        elem.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-        elem.style.filter = 'drop-shadow(0 0 6px rgba(0,0,0,0.3))';
-      }
 
       document.body.appendChild(elem);
 
@@ -431,7 +360,6 @@
     setInterval(() => spawn('balloon'), 900);
     setInterval(() => spawn('tulip'), 1200);
 
-    // Frases románticas que caen suavemente
     const phrases = [
       "Eres mi lugar favorito",
       "Tu sonrisa ilumina mis días",
@@ -537,7 +465,6 @@
       phraseDiv.style.left = `${Math.random() * 80}vw`;
       document.body.appendChild(phraseDiv);
 
-      // Animación y eliminación
       setTimeout(() => {
         phraseDiv.remove();
       }, 6000);
@@ -545,7 +472,6 @@
       phraseIndex = (phraseIndex + 1) % phrases.length;
     }
 
-    // Mostrar y ocultar carta sorpresa
     const carta = document.getElementById('carta');
     const cartaBtn = document.querySelector('button[aria-controls="carta"]');
 
@@ -561,7 +487,6 @@
       cartaBtn.focus();
     }
 
-    // Cerrar carta con Escape
     document.addEventListener('keydown', (e) => {
       if (e.key === "Escape" && carta.classList.contains('visible')) {
         hideCarta();
